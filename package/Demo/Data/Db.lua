@@ -12,19 +12,19 @@ function genObj(class_name, conf, obj)
 local M = {
 
 	probe1 = {
-		title	= 'Название 1',
-		description	= 'Описание 1',
-		content		= 'Текст статьи 1. Бла-бла-бла, бла бла бла.',
+		title	= 'Title 1',
+		description	= 'Brief description of the article 1',
+		content		= 'The text of article number 1. Bla-bla-bla, bla bla bla.',
 	},
 	probe2 = {
-		title	= 'Название 2',
-		description	= 'Описание 2',
-		content		= 'Текст статьи 2. Бла-бла-бла, бла бла бла.',
+		title	= 'Title 2',
+		description	= 'Brief description of the article 2',
+		content		= 'The text of article number 2. Bla-bla-bla, bla bla bla.',
 	},
 	probe3 = {
-		title	= 'Название 3',
-		description	= 'Описание 3',
-		content		= 'Текст статьи 3. Бла-бла-бла, бла бла бла.',
+		title	= 'Title 3',
+		description	= 'Brief description of the article 3',
+		content		= 'The text of article number 3. Bla-bla-bla, bla bla bla.',
 	},
 }
 
