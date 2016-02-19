@@ -1,0 +1,9 @@
+AddDefaultCharset utf-8
+RewriteEngine on
+
+RewriteRule ^index.html ./
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule .* index.lua [L]
