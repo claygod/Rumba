@@ -37,6 +37,7 @@ function init()
 --f2 = io.open("htdocs/moon/v000/autoloader222.lua",  "wb") 
 --f2:write(string.dump(dic)) 
 --f2: close()	
+
 end
 
 --[===================[
@@ -71,14 +72,14 @@ end
 function prnt_r(array)
 	for key, value in pairs(array) do
 		if type(value) == 'string' then
-			prnt('● ' .. key .. " >>> " .. value)
+			prnt('● ' .. key .. " >>>> " .. value)
 		else
 			prnt('● ' .. key)
 			for key2, value2 in pairs(value) do
 				if type(value2) == 'string' then
-					prnt('  ○ ' .. key2 .. " >>> " .. value2)
+					prnt('  ○ ' .. key2 .. " >>>> " .. value2)
 				else
-					prnt('  ○ ' .. key2 .. " >>> TABLE")
+					prnt('  ○ ' .. key2 .. " >>>> TABLE")
 				end
 			end
 		end
