@@ -2,42 +2,44 @@ require "string"
 require "io"
 
 --[[
+	Rumba
 	Open-source software 
 	Copyright © 2016, Eduard Sesigin
 	All rights reserved.
 --]]
 
+--[===================[
+	MAIN
+--]===================]
+
 -- The main function
 function handle(r)
 
-	r222 = r
-	app = {}
-	init()
-	r.content_type = "text/html"
-	
-	di = dofileLua(app.local_path .. "system/injector")
-	
+	rqv = r
+	init(r)
+	di = dofileLua(app.local_path .. "system/injector") -- create DI
 	front, err = di.get("CoreKernelFront")
 	if front == nil then
 		prnt(err)
 	end
-	front.doJob(r)
+	front.doJob(r) -- run
 
 end
 
+--[===================[
+	Initialization
+--]===================]
+
 -- Initialize global table 'app'
-function init()
-	sss = string.gsub (r222.filename, r222.context_document_root, '')
-	sss = string.gsub (sss, 'index.lua', '')
-	app.local_path_right = sss
+function init(r)
+	r.content_type = "text/html"
+	app = {}
+	str = string.gsub (rqv.filename, rqv.context_document_root, '')
+	str = string.gsub (str, 'index.lua', '')
+	app.local_path_right = str
 	app.local_path_left = "htdocs"
 	app.local_path = app.local_path_left .. app.local_path_right	
 	app.lua_file_ext = 'lua'
-	
---f2 = io.open("htdocs/moon/v000/autoloader222.lua",  "wb") 
---f2:write(string.dump(dic)) 
---f2: close()	
-
 end
 
 --[===================[
@@ -64,8 +66,8 @@ end
 
 -- Print string
 function prnt(text)
-	r222:puts(text)
-	r222:puts("\n")
+	rqv:puts(text)
+	rqv:puts("\n")
 end
 
 -- Print table
@@ -85,4 +87,3 @@ function prnt_r(array)
 		end
 	end
 end
-
