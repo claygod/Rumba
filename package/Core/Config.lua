@@ -7,8 +7,6 @@ function genObj()
 
 local M = {
 	Core = {
-		--ext = '.lua',
-		--app_local_path = 'htdocs/moon/v002/',
 		array_error_1 = {title	= "Error",
 			description	= "Page not found",
 			content = "<h2>Error 404</h2>Page not found",
