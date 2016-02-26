@@ -8,6 +8,7 @@ A Lua MVP web micro-framework.
 - MVP structure
 - Basic routing
 - Object oriented style
+- Autoloading 'classes'
 - Dependency Injection (DI)
 - Ability to use precompiled files for acceleration
 
