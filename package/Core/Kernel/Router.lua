@@ -36,17 +36,13 @@ end
 
 -- Get route for the mode GET
 function L.modeGET(inquiry)
-	--prnt ("------------------------ это methodGET");
-	return {controller = 'CoreControllerError'}
+	return {controller = 'CoreControllerError'} -- dummy
 end
 
 -- Get route for the mode SERVER
 function L.modeSERVER(inquiry)
-	--prnt ("------------------------ это methodSERVER");
-	local routes = L.obj.routes --dofileLua(app.local_path .. "system/route")
-	--prnt('<hr>')
+	local routes = L.obj.routes
 	local result
-	--prnt('=' .. inquiry['url_route'] .. '=')
 	for key, func in pairs(routes) do
 		result = func(inquiry['url_route'])
 		if result then
@@ -59,18 +55,8 @@ end
 
 -- Get route for the mode POST
 function L.modePOST(inquiry)
-	--prnt ("------------------------ это methodPOST");
-	return {controller = 'CoreControllerError'}
+	return {controller = 'CoreControllerError'} -- dummy
 end
 
---[[
--- Init
-function L.init222()
-	L.main_conf = dofileLua(app.local_path .. "system/config")
-	L.dependency = dofileLua(app.local_path .. "system/dependency")
-	L.singleton = dofileLua(app.local_path .. "system/single")
-	L.routes = dofileLua(app.local_path .. "system/route")
-end
---]]
 return M	
 end
