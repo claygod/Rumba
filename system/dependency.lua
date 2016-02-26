@@ -13,8 +13,6 @@ local M = {
 	CoreKernelFront = {
 		router		= 'CoreKernelRouter',
 		request		= 'CoreKernelRequest',
-		
-		--routes		= 'CoreKernelRoutes',
 	},
 	CoreKernelRouter = {
 		routes		= 'CoreKernelRoutes',
@@ -41,9 +39,6 @@ local M = {
 	Presenter
 --]===================]
 	DemoPresenterArticle = {
-		model_article = 'DemoModelArticle',
-	},
-	DemoPresenterMenu = {
 		model_article = 'DemoModelArticle',
 	},
 --[===================[
