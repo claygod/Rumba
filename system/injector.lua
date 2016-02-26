@@ -12,12 +12,8 @@ local M = {}
 --]=====================]
 
 local L = {
-	--main_conf = dofileLua(app.local_path .. "system/config"),
 	confs = {},
 	objects = {},
-	--dependency = dofileLua(app.local_path .. "system/dependency"),
-	--singleton = dofileLua(app.local_path .. "system/single"),
-	--routes = dofileLua(app.local_path .. "system/route"),
 }
 
 --[===================[
@@ -40,7 +36,6 @@ end
 
 -- Creating an instance
 function L.make(class_name, conf)
-	--prnt(class_name)
 	local f
 	if L.singleton[class_name] and  L.objects[class_name] then
 		return L.objects[class_name] 
@@ -48,7 +43,6 @@ function L.make(class_name, conf)
 	conf = L.getConf(class_name, conf)
 	local obj = {}
 	local class_path = L.getClassPath(class_name)
-	
 	if L.dependency[class_name] then
 		for key, value in pairs(L.dependency[class_name]) do
 			obj[key] = L.make(value, conf) -- recursion
@@ -57,10 +51,7 @@ function L.make(class_name, conf)
 			end
 		end
 	end
-	--collectgarbage ()
-	
-	local ooo = dofileLua(class_path, class_name, conf, obj)
-	return ooo
+	return dofileLua(class_path, class_name, conf, obj)
 end
 
 -- Init
@@ -77,8 +68,8 @@ function L.getClassPath(class_name)
 	for w in string.gmatch(class_name, "(%u+%l*)") do
 		t[#t+1] = w
 	end
-	local class_path = table.concat(t, '/')--request.document_root 
-	class_path = app.local_path .. 'package/' .. class_path-- .. '.' .. app.lua_file_ext
+	local class_path = table.concat(t, '/') -- request.document_root 
+	class_path = app.local_path .. 'package/' .. class_path
 	return class_path
 end
 
@@ -87,18 +78,13 @@ function L.getConf(class_name, conf)
 	local conf_path = app.local_path .. 'package/' .. string.match(class_name, "(%u+%l*)") .. '/Config'
 	
 	if L.confs[conf_path] then
-		--prnt('+++++++' .. conf_path)
 		return L.confs[conf_path]
 	else
-		--prnt('########' .. conf_path)
-		--prnt_r(conf)
 		local new_conf = dofileLua(conf_path)
-		--prnt_r(new_conf)
 		for k,v in pairs(conf) do -- add main config
 			new_conf[k] = v
 		end
 		L.confs[conf_path] = new_conf
-		--prnt_r(new_conf)
 		return new_conf
 	end
 end
