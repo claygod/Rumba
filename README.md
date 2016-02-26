@@ -13,4 +13,6 @@ A Lua MVP web micro-framework.
 
 # Installation
 
-copy and unpack for hosting distribution
+- Copy and unpack for hosting distribution
+- Edit app.local_path_left = "htdocs" in index.lua
+- In the configuration file in "httpd.conf" in DirectoryIndex section add index.lua and uncomment the line "LoadModule lua_module modules/mod_lua.so"
