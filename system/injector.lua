@@ -59,7 +59,6 @@ function L.init()
 	L.main_conf = dofileLua(app.local_path .. "system/config")
 	L.dependency = dofileLua(app.local_path .. "system/dependency")
 	L.singleton = dofileLua(app.local_path .. "system/single")
-	L.routes = dofileLua(app.local_path .. "system/route")
 end
 
 -- Generate the path of the class name
