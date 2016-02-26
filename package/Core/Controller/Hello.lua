@@ -39,11 +39,5 @@ function M.doJob(route)
 	return out
 end
 
---[===================[
-	Private methods
---]===================]
-
-
-
 return M	
 end
