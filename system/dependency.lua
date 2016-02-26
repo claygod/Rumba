@@ -11,19 +11,30 @@ local M = {
 	Core
 --]===================]
 	CoreKernelFront = {
-		request		= 'CoreKernelRequest',
 		router		= 'CoreKernelRouter',
+		request		= 'CoreKernelRequest',
+		
+		--routes		= 'CoreKernelRoutes',
 	},
-	
+	CoreKernelRouter = {
+		routes		= 'CoreKernelRoutes',
+	},
 --[===================[
 	Controller
 --]===================]
+	CoreControllerIndex = {
+		article = 'DemoPresenterArticle',
+		template = 'CoreTemplatePage',
+	},
 	CoreControllerPage = {
 		article = 'DemoPresenterArticle',
 		template = 'CoreTemplatePage',
 	},
 	CoreControllerError = {
 		article = 'DemoPresenterArticle',
+		template = 'CoreTemplatePage',
+	},
+	CoreControllerHello = {
 		template = 'CoreTemplatePage',
 	},
 --[===================[

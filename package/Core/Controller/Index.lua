@@ -1,6 +1,6 @@
 --[[
-	CoreControllerError
-	Controller 'Error'
+	CoreControllerIndex
+	Controller 'Index' - start page
 --]]
 
 function genObj(class_name, conf, obj)
@@ -27,13 +27,12 @@ function M.doJob(route)
 	local res = {}
 
 	-- content+description+title
-	res = L.conf.Core.array_error_1
-		tpl = string.gsub (tpl, '{title}', res.title, 1)
-		tpl = string.gsub (tpl, '{description}', res.description, 1)
-		tpl = string.gsub (tpl, '{content}', res.content, 1)
-		out.status = res.status
-
-	-- sidebar	
+		tpl = string.gsub (tpl, '{title}', 'Main page', 1)
+		tpl = string.gsub (tpl, '{description}', 'A brief description of the site', 1)
+		tpl = string.gsub (tpl, '{content}', '<h2>Welcome</h2>Block "Welcome" and the description of the site mission', 1)
+		out.status = 'HTTP/1.0 200 OK'
+	
+	-- sidebar
 	res = L.obj.article.doJob(route, 'List')
 		tpl = string.gsub (tpl, '{sidebar}', res.content, 1)
 

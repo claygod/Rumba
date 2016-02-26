@@ -22,7 +22,7 @@ local L = {
 --]===================]
 
 function M.doJob(route)
-	local tpl = L.obj.template
+	local tpl = L.obj.template[1]
 	local out = {text = '', status = false}
 	local res = {}
 

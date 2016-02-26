@@ -7,7 +7,6 @@ function genObj()
 
 local M = {
 	Demo = {
-		dummy = 'Dummy',
 		template = {article = "<h2>{title}</h2>{content}\n",
 			sidebar = "<li><a href='{id}.html'>{title}</a></li>\n"},
 		array_error_1 = {title	= "Error",

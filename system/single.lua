@@ -8,6 +8,7 @@ function genObj()
 local M = {
 	CoreKernelRequest = true,
 	CoreKernelRouter = true,
+	CoreKernelRoutes = true,
 	DemoModelArticle = true,
 	DemoDataDb = true,
 }

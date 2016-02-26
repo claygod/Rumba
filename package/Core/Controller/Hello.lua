@@ -1,6 +1,6 @@
 --[[
-	CoreControllerError
-	Controller 'Error'
+	CoreControllerHello
+	Controller 'Hello'
 --]]
 
 function genObj(class_name, conf, obj)
@@ -27,15 +27,13 @@ function M.doJob(route)
 	local res = {}
 
 	-- content+description+title
-	res = L.conf.Core.array_error_1
-		tpl = string.gsub (tpl, '{title}', res.title, 1)
-		tpl = string.gsub (tpl, '{description}', res.description, 1)
-		tpl = string.gsub (tpl, '{content}', res.content, 1)
-		out.status = res.status
-
-	-- sidebar	
-	res = L.obj.article.doJob(route, 'List')
-		tpl = string.gsub (tpl, '{sidebar}', res.content, 1)
+		tpl = string.gsub (tpl, '{title}', 'Hello', 1)
+		tpl = string.gsub (tpl, '{description}', 'A brief description (hello)', 1)
+		tpl = string.gsub (tpl, '{content}', '<h2>Hello World</h2>This page is for testing speeds', 1)
+		out.status = 'HTTP/1.0 200 OK'
+	
+	-- sidebar
+		tpl = string.gsub (tpl, '{sidebar}', '', 1)
 
 	out.text = tpl
 	return out

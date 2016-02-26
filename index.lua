@@ -1,5 +1,5 @@
-require "string"
-require "io"
+--require "string"
+--require "io"
 
 --[[
 	Rumba
@@ -14,16 +14,20 @@ require "io"
 
 -- The main function
 function handle(r)
-
 	rqv = r
+	local temp = r:server_info()
 	init(r)
+	
 	di = dofileLua(app.local_path .. "system/injector") -- create DI
+	
+--prnt_r(_G)
+--prnt_r(r:server_info())
 	front, err = di.get("CoreKernelFront")
 	if front == nil then
 		prnt(err)
 	end
 	front.doJob(r) -- run
-
+	prnt('<p style="clear:both; padding:10px; float:right;">Used memory: ' .. math.ceil(collectgarbage ('count')) .. 'Kbyte</p>')
 end
 
 --[===================[
@@ -40,6 +44,9 @@ function init(r)
 	app.local_path_left = "htdocs"
 	app.local_path = app.local_path_left .. app.local_path_right	
 	app.lua_file_ext = 'lua'
+	local temp = r:server_info()
+	app.os = r:server_info().server_mpm
+	--prnt_r(app)
 end
 
 --[===================[
@@ -56,32 +63,79 @@ function countTable(tab)
 end
 
 -- Get the code from the file, wrapped in a function
-function dofileLua(file, ext)
-	if ext == nil then
-		ext = app.lua_file_ext
+function dofileLua(file, ext, ...)
+	if #{...} > 0 then
+		return dofileLuaObj(file, ext, ...)
 	end
-	dofile (file .. '.' .. ext)
-	return genObj()
+	local f
+	ext = ext or app.lua_file_ext
+	--[[
+	--prnt('******' .. file .. '******')
+	if file == 'htdocs/moon/v0092/system/injector' then
+		--prnt('-!--!=====================================================!!-!-')
+		--dofile ('htdocs/moon/v002/package/Core/Config.ls')
+		f = loadfile('htdocs/moon/v002/system/injector.ls')
+		return f()
+	end
+	--]]
+	
+	if(ext == 'ls') then
+		f = loadfile(file .. '.' .. ext)
+		return f()
+	else
+		--prnt('******' .. file .. '.' .. ext .. '******')
+		local f = assert(loadfile(file .. '.' .. ext))
+		f()
+		f=nil
+		return genObj()
+	end
+end
+
+-- Get the obj's code from the file, wrapped in a function
+function dofileLuaObj(file, class_name, conf, obj, ext)
+	local f
+	ext = ext or app.lua_file_ext
+	--[[
+	--prnt('++++++++' .. file .. '++++++++')
+	if file == 'htdocs/moon/v0022/package/Core/Kernel/Request' then
+		prnt('-!--!=====================================================!!-!-')
+		--dofile ('htdocs/moon/v002/package/Core/Config.ls')
+
+		f = loadfile('htdocs/moon/v002/package/Core/Kernel/Request.ls')
+		return f(class_name, conf, obj)
+	end
+	--]]
+	if(ext == 'ls') then
+		--prnt('++++++++' .. file .. '++++++++1')
+		f = loadfile(file .. '.' .. ext)
+		return f(class_name, conf, obj)
+	else
+		--prnt('++++++++' .. file .. '++++++++2')
+		f = loadfile(file .. '.' .. ext)
+		f()
+		f=nil
+		return genObj(class_name, conf, obj)
+	end
 end
 
 -- Print string
 function prnt(text)
 	rqv:puts(text)
-	rqv:puts("\n")
+	rqv:puts("<br>\n")
 end
 
 -- Print table
 function prnt_r(array)
 	for key, value in pairs(array) do
 		if type(value) == 'string' then
-			prnt('● ' .. key .. " >>>> " .. value)
+			prnt('● ' .. key .. " >>>> " .. value .. "<br>\n")
 		else
 			prnt('● ' .. key)
 			for key2, value2 in pairs(value) do
 				if type(value2) == 'string' then
-					prnt('  ○ ' .. key2 .. " >>>> " .. value2)
+					prnt('  ○ ' .. key2 .. " >>>> " .. value2 .. "<br>\n")
 				else
-					prnt('  ○ ' .. key2 .. " >>>> TABLE")
+					prnt('  ○ ' .. key2 .. " >>>> TABLE<br>\n")
 				end
 			end
 		end

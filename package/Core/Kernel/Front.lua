@@ -13,7 +13,7 @@ local M = {}
 local L = {
 	class_name = class_name,
 	conf = conf,
-	obj = obj
+	obj = obj,
 }
 
 --[===================[
@@ -22,8 +22,10 @@ local L = {
 
 function M.doJob(r)
 	
-	local inquiry = L['obj'].request.doJob(r)
-	local route = L['obj'].router.doJob(inquiry)
+	--prnt_r(L.obj)
+	local inquiry = L.obj.request.doJob(r)
+	--prnt('<hr>') prnt_r(inquiry)
+	local route = L.obj.router.doJob(inquiry)
 	--prnt_r(route)
 	local controller, err = di.get(route['controller'])
 	local html = controller.doJob(route)

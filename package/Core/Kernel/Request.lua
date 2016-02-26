@@ -47,7 +47,7 @@ function M.doJob(r)
 		end
 		prnt("88888888888888888888888888888\n");
 	--]]
-	
+	--prnt('     request -------------')
 	local query = {}
 	query['method'] = r.method
 	query['protocol'] = L.getProtocol(r)
@@ -58,7 +58,7 @@ function M.doJob(r)
 	query['url_core'] = string.gsub (r.uri, 'index.lua', '')
 	query['url_route'] = string.gsub (query['url_right'], query['url_core'], '')
 	query['url_left'] = query['protocol'] .. "://" .. query['hostname'] .. query['url_core']
-	
+	--prnt('     request -------------')
 	-- query arguments
 	if r.method == 'GET' then
 		local GET, GETMULTI = r:parseargs()
@@ -70,6 +70,8 @@ function M.doJob(r)
 		query['parseargs_multi'] = POSTMULTI
 	end	
 	
+	
+	
 	-- select mode
 	if countTable(query['parseargs_one']) == 0
 		and string.match(query['url_full'], "^http:\/\/([%a%d.-_\/]*).html$")
@@ -79,9 +81,15 @@ function M.doJob(r)
 		query['mode'] = 'SERVER'
 	else
 		--prnt ("----- это HHHHHHEEEEEEEE SERVER\n");
-		query['mode'] = query['method']
+		if query['url_core'] == query['url_right'] then
+			query['url_route'] = 'index'
+			query['mode'] = 'SERVER'
+		else
+			query['mode'] = query['method']
+		end
+		
 	end
-
+	--prnt_r(query)
 	return query
 end
 
@@ -93,7 +101,6 @@ end
 function L.getUrlRight(r)
 	local str = string.gsub (r.the_request, r.method .. ' ', '')
 	str = string.gsub (str, ' ' .. r.protocol, '')
-	--str = string.gsub (str, r.protocol, '')
 	return str
 end
 

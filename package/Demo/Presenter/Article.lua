@@ -45,7 +45,7 @@ function L.exeArticle(id_page)
 		result.content = blank
 		return result
 	else
-		return L.conf.Core.array_error_1 --L.conf.Demo.array_error_1
+		return L.conf.Core.array_error_1
 	end
 end
 
@@ -65,7 +65,6 @@ function L.exeList()
 		end
 		out.description = table.concat(mediate.d, ', ')
 		out.content = table.concat(mediate.c, ' ')
-		--prnt_r(out)
 		return out
 	else
 		return L.conf.Core.array_error_1

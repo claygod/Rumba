@@ -32,9 +32,5 @@ function M.getAll()
 	return L.obj.db
 end
 
---[===================[
-	Private methods
---]===================]
-
 return M	
 end
