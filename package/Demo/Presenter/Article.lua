@@ -58,7 +58,7 @@ function L.exeList()
 		local mediate = {t = {}, d = {}, c = {}}
 		for key, value in pairs(result) do
 			blank = L.conf.Demo.template.sidebar
-			blank = string.gsub (blank, '{id}', key, 1)
+			blank = string.gsub (blank, '{id}', value.id, 1)
 			blank = string.gsub (blank, '{title}', value.title, 1)
 			mediate.c[#mediate.c + 1] = blank
 			mediate.d[#mediate.d + 1] = value.title

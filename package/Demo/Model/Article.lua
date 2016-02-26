@@ -21,10 +21,10 @@ local L = {
 --]===================]
 
 function M.getArticle(id_page)
-	if L.obj.db[id_page] then
-		return L.obj.db[id_page]
-	else
-		return nil
+	for key, value in pairs(L.obj.db) do
+		if value.id == id_page then
+			return value
+		end
 	end
 end
 
