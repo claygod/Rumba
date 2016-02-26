@@ -10,3 +10,7 @@ A Lua MVP web micro-framework.
 - Object oriented style
 - Dependency Injection (DI)
 - Ability to use precompiled files for acceleration
+
+# Installation
+
+copy and unpack for hosting distribution
