@@ -1,5 +1,5 @@
 --[[
-	Router
+	CoreKernelRouter
 	Route selection
 --]]
 
