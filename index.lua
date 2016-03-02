@@ -17,11 +17,7 @@ function handle(r)
 	rqv = r
 	local temp = r:server_info()
 	init(r)
-	
 	di = dofileLua(app.local_path .. "system/injector") -- create DI
-	
---prnt_r(_G)
---prnt_r(r:server_info())
 	front, err = di.get("CoreKernelFront")
 	if front == nil then
 		prnt(err)
@@ -69,21 +65,10 @@ function dofileLua(file, ext, ...)
 	end
 	local f
 	ext = ext or app.lua_file_ext
-	--[[
-	--prnt('******' .. file .. '******')
-	if file == 'htdocs/moon/v0092/system/injector' then
-		--prnt('-!--!=====================================================!!-!-')
-		--dofile ('htdocs/moon/v002/package/Core/Config.ls')
-		f = loadfile('htdocs/moon/v002/system/injector.ls')
-		return f()
-	end
-	--]]
-	
 	if(ext == 'ls') then
 		f = loadfile(file .. '.' .. ext)
 		return f()
 	else
-		--prnt('******' .. file .. '.' .. ext .. '******')
 		local f = assert(loadfile(file .. '.' .. ext))
 		f()
 		f=nil
@@ -95,22 +80,10 @@ end
 function dofileLuaObj(file, class_name, conf, obj, ext)
 	local f
 	ext = ext or app.lua_file_ext
-	--[[
-	--prnt('++++++++' .. file .. '++++++++')
-	if file == 'htdocs/moon/v0022/package/Core/Kernel/Request' then
-		prnt('-!--!=====================================================!!-!-')
-		--dofile ('htdocs/moon/v002/package/Core/Config.ls')
-
-		f = loadfile('htdocs/moon/v002/package/Core/Kernel/Request.ls')
-		return f(class_name, conf, obj)
-	end
-	--]]
 	if(ext == 'ls') then
-		--prnt('++++++++' .. file .. '++++++++1')
 		f = loadfile(file .. '.' .. ext)
 		return f(class_name, conf, obj)
 	else
-		--prnt('++++++++' .. file .. '++++++++2')
 		f = loadfile(file .. '.' .. ext)
 		f()
 		f=nil
