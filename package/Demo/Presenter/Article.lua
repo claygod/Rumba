@@ -22,6 +22,7 @@ local L = {
 --]===================]
 
 function M.doJob(route, event)
+	event = event or 'Article'
 	local exe_event = 'exe' .. event
 	if L[exe_event] then
 		local id_page = tostring(route.id_page)
