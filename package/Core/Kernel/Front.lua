@@ -1,5 +1,5 @@
 --[[
-	Front
+	CoreKernelFront
 	The controller main framework
 --]]
 
