@@ -42,7 +42,6 @@ function init(r)
 	app.lua_file_ext = 'lua'
 	local temp = r:server_info()
 	app.os = r:server_info().server_mpm
-	--prnt_r(app)
 end
 
 --[===================[
