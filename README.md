@@ -17,3 +17,5 @@ A Lua MVP web micro-framework.
 - Copy and unpack for hosting distribution
 - Edit the line: app.local_path_left = "htdocs" in the file 'index.lua'
 - In the configuration file in "httpd.conf" in DirectoryIndex section add index.lua and uncomment the line "LoadModule lua_module modules/mod_lua.so"
+
+Copyright © 2016-2019 Eduard Sesigin. All rights reserved. Contacts: claygod@yandex.ru
